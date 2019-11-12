@@ -26,6 +26,8 @@ public class DataFiller implements ApplicationRunner {
 
     private final UserRoleRepository userRoleRepository;
 
+    private final Random random;
+
     public DataFiller(CinemaRepository cinemaRepository,
                       ActorRepository actorRepository,
                       RoleRepository roleRepository,
@@ -37,12 +39,12 @@ public class DataFiller implements ApplicationRunner {
         this.cinematographerRepository = cinematographerRepository;
         this.directorRepository = directorRepository;
         this.userRoleRepository = userRoleRepository;
+        this.random = new Random();
     }
 
 
     @Override
     public void run(ApplicationArguments args) {
-        Random random = new Random();
         List<Director> directors = IntStream.range(0, 50)
                 .mapToObj(element -> {
                     Director director = new Director();

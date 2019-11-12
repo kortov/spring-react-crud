@@ -25,11 +25,7 @@ class LoginPageComponent extends React.Component<Props, State> {
 
     constructor(props) {
         super(props);
-
         this.props.logout();
-
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -38,15 +34,14 @@ class LoginPageComponent extends React.Component<Props, State> {
         this.setState({[name]: value});
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
-
         this.setState({submitted: true});
         const {username, password} = this.state;
         if (username && password) {
             this.props.login(username, password);
         }
-    }
+    };
 
     render() {
         const {loggingIn} = this.props;
