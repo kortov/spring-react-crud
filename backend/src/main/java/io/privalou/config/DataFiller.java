@@ -6,8 +6,10 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,19 +28,23 @@ public class DataFiller implements ApplicationRunner {
 
     private final UserRoleRepository userRoleRepository;
 
+    private final UserRepository userRepository;
+
     private final Random random;
 
     public DataFiller(CinemaRepository cinemaRepository,
                       ActorRepository actorRepository,
                       RoleRepository roleRepository,
                       CinematographerRepository cinematographerRepository,
-                      DirectorRepository directorRepository, UserRoleRepository userRoleRepository) {
+                      DirectorRepository directorRepository, UserRoleRepository userRoleRepository,
+                      UserRepository userRepository) {
         this.cinemaRepository = cinemaRepository;
         this.actorRepository = actorRepository;
         this.roleRepository = roleRepository;
         this.cinematographerRepository = cinematographerRepository;
         this.directorRepository = directorRepository;
         this.userRoleRepository = userRoleRepository;
+        this.userRepository = userRepository;
         this.random = new Random();
     }
 
@@ -119,5 +125,17 @@ public class DataFiller implements ApplicationRunner {
         UserRole user = new UserRole();
         user.setName(UserRoleType.ROLE_USER);
         userRoleRepository.save(user);
+
+        Set<UserRole> userRoles = new HashSet<>();
+        userRoles.add(admin);
+        userRoles.add(user);
+
+        User privalove = new User();
+        privalove.setUsername("privalove");
+        privalove.setPassword("$2a$10$3iJggMLjaphEoEwmuJ3DVOFRsbsMlgiKWsBZq53r/cLkwZjdg14km");
+        privalove.setName("Artem Privalov");
+        privalove.setEmail("privalov.dev@gmail.com");
+        privalove.setRoles(userRoles);
+        userRepository.save(privalove);
     }
 }

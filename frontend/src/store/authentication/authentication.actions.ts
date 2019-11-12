@@ -1,6 +1,8 @@
 import {ActionsUnion, createAction} from '@store/actions-helpers';
 import {Dispatch} from "redux";
 import axios from 'axios';
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 export const LOGIN_REQUEST = '[AUTHENTICATION] LOGIN_REQUEST';
 export const LOGOUT_REQUEST = '[AUTHENTICATION] LOGOUT_REQUEST';
@@ -16,16 +18,18 @@ export const Thunks = {
     loginRequest: (username: string, password: string) => {
         return (dispatch: Dispatch) => {
             dispatch(Actions.loginRequest(username));
-            const config = {
-                headers: {'Content-Type': 'application/json'},
-                data: JSON.stringify({username, password})
-            };
-            const promise = axios.post('http://' + hostname + ':8080/api/auth/signin', config);
+            const promise = axios.post('http://' + hostname + ':8080/api/auth/signin', {
+                usernameOrEmail: username,
+                password: password
+            });
             promise
-                .then(Thunks.handleResponse)
-                .then(user => {
-                    localStorage.setItem('user', JSON.stringify(user));
-                    return user;
+                .then((data: any) => {
+                    console.log('user', data);
+                    localStorage.setItem('user', `${data.tokenType}:${data.accessToken}`);
+                }, error => {
+                    console.error('error', error);
+                    Thunks.logout();
+                    location.reload();
                 });
         }
     },
@@ -35,22 +39,6 @@ export const Thunks = {
             localStorage.removeItem('user');
         }
     },
-    handleResponse: (response: any) => {
-        return response.text().then(text => {
-            const data = text && JSON.parse(text);
-            if (!response.ok) {
-                if (response.status === 401) {
-                    // auto logout if 401 response returned from api
-                    Thunks.logout();
-                    location.reload();
-                }
-
-                const error = (data && data.message) || response.statusText;
-                return Promise.reject(error);
-            }
-            return data;
-        });
-    }
 };
 
 
