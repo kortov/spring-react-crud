@@ -1,7 +1,9 @@
 import {ActionsUnion, createAction} from '@store/actions-helpers';
 import {Dispatch} from "redux";
 import axios from 'axios';
+import {history} from "@store";
 import {Simulate} from "react-dom/test-utils";
+import {Actions as alertActions} from "@store/alerts";
 import error = Simulate.error;
 
 export const LOGIN_REQUEST = '[AUTHENTICATION] LOGIN_REQUEST';
@@ -24,12 +26,14 @@ export const Thunks = {
             });
             promise
                 .then((data: any) => {
-                    console.log('user', data);
-                    localStorage.setItem('user', `${data.tokenType}:${data.accessToken}`);
+                    const element = `${data.data.tokenType}:${data.data.accessToken}`;
+                    localStorage.setItem('user', element);
+                    dispatch(alertActions.success('Login successfully'));
+                    history.push('/');
                 }, error => {
                     console.error('error', error);
                     Thunks.logout();
-                    location.reload();
+                    dispatch(alertActions.error('Login failed'));
                 });
         }
     },

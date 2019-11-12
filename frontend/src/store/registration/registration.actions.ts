@@ -29,6 +29,7 @@ export const Thunks = {
                         history.push('/login');
                         const {data} = response;
                         dispatch(alertActions.success(data.message));
+                        history.push('/');
                     },
                     error => {
                         dispatch(Actions.registrationFailure());
