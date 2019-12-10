@@ -28,13 +28,13 @@ class LoginPageComponent extends React.Component<Props, State> {
         this.props.logout();
     }
 
-    handleChange(e: any) {
+    handleChange = (e: any) => {
         const {name, value} = e.target;
         // @ts-ignore
         this.setState({[name]: value});
     }
 
-    handleSubmit(e: any) {
+    handleSubmit = (e: any) => {
         e.preventDefault();
 
         this.setState({submitted: true});

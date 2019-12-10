@@ -22,7 +22,7 @@ export const Thunks = {
         register: (user: User) => {
             return (dispatch: Dispatch) => {
                 dispatch(Actions.registrationRequest(user));
-                const promise = axios.post(`http://${hostname}:8080/api/auth/signup`, user);
+                const promise = axios.post('http://' + hostname + ':8080/api/auth/signup', user);
                 promise.then(
                     response => {
                         dispatch(Actions.registrationSuccess());

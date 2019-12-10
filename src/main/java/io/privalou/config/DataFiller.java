@@ -30,8 +30,6 @@ public class DataFiller implements ApplicationRunner {
 
     private final UserRepository userRepository;
 
-    private final Random random;
-
     public DataFiller(CinemaRepository cinemaRepository,
                       ActorRepository actorRepository,
                       RoleRepository roleRepository,
@@ -45,12 +43,12 @@ public class DataFiller implements ApplicationRunner {
         this.directorRepository = directorRepository;
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
-        this.random = new Random();
     }
 
 
     @Override
     public void run(ApplicationArguments args) {
+        Random random = new Random();
         List<Director> directors = IntStream.range(0, 50)
                 .mapToObj(element -> {
                     Director director = new Director();
@@ -132,7 +130,8 @@ public class DataFiller implements ApplicationRunner {
 
         User privalove = new User();
         privalove.setUsername("privalove");
-        privalove.setPassword("$2a$10$3iJggMLjaphEoEwmuJ3DVOFRsbsMlgiKWsBZq53r/cLkwZjdg14km");
+        // hashed pass 123123
+        privalove.setPassword("$2a$10$qistJBEGilidVNFwUFumZuA8R4JZJ15e2kehLqq9D8uHhkrZMOo1a");
         privalove.setName("Artem Privalov");
         privalove.setEmail("privalov.dev@gmail.com");
         privalove.setRoles(userRoles);
