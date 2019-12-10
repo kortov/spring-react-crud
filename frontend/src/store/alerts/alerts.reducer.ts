@@ -1,5 +1,5 @@
 import * as alertActions from '@store/alerts/alerts.actions';
-import {AlertItem} from "@models";
+import {AlertItem} from '@models';
 
 export interface AlertState {
     alert: AlertItem;
@@ -17,25 +17,23 @@ export const alertsReducer = (
         case alertActions.CLEAR:
             return {
                 ...state,
-                alert: {}
+                alert: {},
             };
         case alertActions.ERROR:
-            console.log(' alertActions.ERROR action.payload', action.payload);
             return {
                 ...state,
                 alert: {
                     type: 'alert-danger',
                     message: action.payload,
-                }
+                },
             };
         case alertActions.SUCCESS:
-            console.log(' alertActions.SUCCESS action.payload', action.payload);
             return {
                 ...state,
                 alert: {
                     type: 'alert-success',
                     message: action.payload,
-                }
+                },
             };
         default:
             return state;

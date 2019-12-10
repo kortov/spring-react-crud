@@ -1,31 +1,26 @@
-# build
-package-lock.json
-yarn.lock
-node_modules/
+/target/
+!.mvn/wrapper/maven-wrapper.jar
 
-# IDEs and editors
-.project
+### STS ###
+.apt_generated
 .classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-.idea/
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+.idea/libraries
+*.iws
 *.iml
+*.ipr
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# misc
-*.log
-.attach_pid*
-
-# System Files
-.DS_Store
-Thumbs.db
-
-
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

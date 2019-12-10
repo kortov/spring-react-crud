@@ -15,18 +15,18 @@ export const Thunks = {
     clearAlerts: () => {
         return (dispatch: Dispatch) => {
             dispatch(Actions.clearAlerts());
-        }
+        };
     },
     success: (message: string) => {
         return (dispatch: Dispatch) => {
-            dispatch(Actions.success(message))
-        }
+            dispatch(Actions.success(message));
+        };
     },
     error: (message: string) => {
         return (dispatch: Dispatch) => {
-            dispatch(Actions.error(message))
-        }
-    }
+            dispatch(Actions.error(message));
+        };
+    },
 };
 
 export type Actions = ActionsUnion<typeof Actions>;

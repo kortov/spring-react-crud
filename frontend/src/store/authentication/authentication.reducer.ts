@@ -9,7 +9,7 @@ export interface AuthenticationState {
 const initialState: AuthenticationState = {
     loggingIn: false,
     loggedIn: false,
-    user: {}
+    user: {},
 };
 
 export const authenticationReducer = (
@@ -21,14 +21,14 @@ export const authenticationReducer = (
             return {
                 ...state,
                 loggedIn: true,
-                user: action.payload
+                user: action.payload,
             };
         case authenticationActions.LOGOUT_REQUEST:
             return {
                 ...state,
                 loggedIn: false,
                 loggingIn: false,
-                user: {}
+                user: {},
             };
         default:
             return state;

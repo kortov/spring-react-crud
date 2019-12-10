@@ -12,12 +12,6 @@ spring:
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    open-in-view: false
-    generate-ddl: false
-  jackson:
-    serialization:
-      WRITE_DATES_AS_TIMESTAMPS: false
-    time-zone: UTC
 logging:
   pattern:
     console: "%d %-5level %logger : %msg%n"

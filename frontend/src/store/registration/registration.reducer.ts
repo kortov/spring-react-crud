@@ -21,12 +21,12 @@ export const registrationReducer = (
         case registrationActions.REGISTER_SUCCESS:
             return {
                 ...state,
-                registering: false
+                registering: false,
             };
         case registrationActions.REGISTER_FAILURE:
             return {
                 ...state,
-                registering: false
+                registering: false,
             };
         default:
             return state;

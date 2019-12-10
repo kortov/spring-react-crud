@@ -54,10 +54,6 @@
       }
     ],
     "no-trailing-whitespace": true,
-    "no-unused-variable": [
-      true,
-      "react"
-    ],
     "object-literal-sort-keys": false,
     "object-literal-shorthand": false,
     "one-variable-per-declaration": [
@@ -71,10 +67,6 @@
       false
     ],
     "prefer-method-signature": false,
-    "prefer-template": [
-      true,
-      "allow-single-concat"
-    ],
     "quotemark": [
       true,
       "single",

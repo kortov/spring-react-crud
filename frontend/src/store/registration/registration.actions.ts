@@ -1,9 +1,9 @@
 import {ActionsUnion, createAction} from '@store/actions-helpers';
-import {Dispatch} from "redux";
-import {User} from "@models";
+import {Dispatch} from 'redux';
+import {User} from '@models';
 import {Actions as alertActions} from '@store/alerts';
 import {Thunks as authenticationThunks} from '@store/authentication';
-import {history} from "@store";
+import {history} from '@store';
 import axios from 'axios';
 
 export const REGISTRATION_REQUEST = '[REGISTRATION] REGISTER_REQUEST';
@@ -22,7 +22,7 @@ export const Thunks = {
         register: (user: User) => {
             return (dispatch: Dispatch) => {
                 dispatch(Actions.registrationRequest(user));
-                let promise = axios.post('http://' + hostname + ':8080/api/auth/signup', user);
+                const promise = axios.post(`http://${hostname}:8080/api/auth/signup`, user);
                 promise.then(
                     response => {
                         dispatch(Actions.registrationSuccess());
@@ -40,7 +40,7 @@ export const Thunks = {
                     }
                 );
                 dispatch(alertActions.clearAlerts());
-            }
+            };
         },
 
         handleResponse: (response: any) => {
@@ -56,10 +56,9 @@ export const Thunks = {
                 }
                 return data;
             });
-        }
+        },
     }
 ;
-
 
 export type Actions = ActionsUnion<typeof Actions>;
 export type Thunks = ActionsUnion<typeof Thunks>;

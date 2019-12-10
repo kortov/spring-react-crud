@@ -1,3 +1,3 @@
 export * from '@store/state.types';
 export * from '@store/store';
-export * from "@store/history"
+export * from '@store/history';

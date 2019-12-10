@@ -1,5 +1,5 @@
 {
-  "name": "shelter",
+  "name": "ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,26 +7,23 @@
     "@types/node": "12.7.5",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "axios": "latest",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.2",
-    "typescript": "3.6.3",
-    "react-router-dom": "latest",
-    "redux": "latest",
     "react-redux": "latest",
+    "react-router-dom": "latest",
+    "react-scripts": "3.1.2",
+    "react-scripts-ts": "^3.1.0",
+    "redux": "latest",
+    "redux-logger": "latest",
     "redux-thunk": "latest",
-    "axios": "latest",
     "reselect": "latest",
-    "redux-logger": "latest"
+    "typescript": "3.6.3"
   },
   "scripts": {
-    "start": "webpack-dev-server --http --open --progress --config ./config/webpack.dev.js",
-    "build": "webpack --config ./config/webpack.prod.js",
-    "build-dev": "webpack --config ./config/webpack.dev.js",
-    "prod-local": "npm run build && static -p 3000 ./dist",
-    "dev-local": "npm run build-dev && static -a 0.0.0.0 -p 8080 ./dist",
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
     "precommit": "lint-staged",
-    "test": "jest",
     "tslint": "tslint ./*.tsx -t verbose",
     "lint-fix": "tslint --fix ./*.tsx -t verbose"
   },
@@ -45,18 +42,14 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://localhost:8080/",
   "devDependencies": {
-    "clean-webpack-plugin": "^1.0.1",
     "es6-promise": "^4.2.8",
-    "html-webpack-plugin": "latest",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "mini-css-extract-plugin": "latest",
     "node-sass": "^4.12.0",
     "redbox-react": "^1.6.0",
     "ts-loader": "^6.1.0",
-    "tsconfig-paths-webpack-plugin": "^3.2.0",
-    "webpack": "^4.29.1",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1",
-    "webpack-merge": "^4.2.2"
+    "tsconfig-paths-webpack-plugin": "^3.2.0"
   }
 }

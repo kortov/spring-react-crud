@@ -3,15 +3,15 @@ import {Redirect, Route, Router, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getAlert, Thunks as appThunks} from '@store/alerts';
 
-import {DispatchThunk, history, RootState} from "@store";
-import {AlertItem} from "@models";
-import {PrivateRoute} from "../shared";
-import {HomePage} from "../home/Home";
-import {LoginPage} from "../user/LoginPage";
-import {RegisterPage} from "../user/RegisterPage";
+import {DispatchThunk, history, RootState} from '@store';
+import {AlertItem} from '@models';
+import {PrivateRoute} from '../shared';
+import {HomePage} from '../home/Home';
+import {LoginPage} from '../user/LoginPage';
+import {RegisterPage} from '../user/RegisterPage';
 
 interface Props {
-    alert?: AlertItem
+    alert?: AlertItem;
     clearAlerts: any;
 }
 
@@ -20,9 +20,8 @@ interface State {
 }
 
 class AppComponent extends Component<Props, State> {
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
-
         history.listen(() => {
             this.props.clearAlerts();
         });
@@ -42,10 +41,24 @@ class AppComponent extends Component<Props, State> {
                         }
                         <Router history={history}>
                             <Switch>
-                                <PrivateRoute exact path="/" component={HomePage}/>
-                                <Route path="/login" component={LoginPage}/>
-                                <Route path="/register" component={RegisterPage}/>
-                                <Redirect from="*" to="/"/>
+                                <Route
+                                    exact={true}
+                                    path="/login"
+                                    component={LoginPage}
+                                />
+                                <PrivateRoute
+                                    exact={true}
+                                    path="/"
+                                    component={HomePage}
+                                />
+                                <Route
+                                    path="/register"
+                                    component={RegisterPage}
+                                />
+                                <Redirect
+                                    from="*"
+                                    to="/"
+                                />
                             </Switch>
                         </Router>
                     </div>
@@ -56,13 +69,13 @@ class AppComponent extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    alert: getAlert(state)
+    alert: getAlert(state),
 });
 
 const mapDispatchToProps = (dispatch: DispatchThunk) => ({
     clearAlerts: () => {
         dispatch(appThunks.clearAlerts());
-    }
+    },
 });
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
