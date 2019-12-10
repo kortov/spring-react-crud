@@ -16,15 +16,15 @@ import java.util.Optional;
 public class AuditingConfig {
 
     @Bean
-    public AuditorAware<Long> auditorProvider() {
+    public AuditorAware<Integer> auditorProvider() {
         return new SpringSecurityAuditAwareImpl();
     }
 }
 
-class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
+class SpringSecurityAuditAwareImpl implements AuditorAware<Integer> {
 
     @Override
-    public Optional<Long> getCurrentAuditor() {
+    public Optional<Integer> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null ||

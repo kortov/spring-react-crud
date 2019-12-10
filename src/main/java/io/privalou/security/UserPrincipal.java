@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Data
 @AllArgsConstructor
 public class UserPrincipal implements UserDetails {
-    private Long id;
+    private Integer id;
 
     private String name;
 

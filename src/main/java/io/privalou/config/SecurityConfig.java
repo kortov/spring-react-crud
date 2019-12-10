@@ -3,6 +3,7 @@ package io.privalou.config;
 import io.privalou.security.CustomUserDetailsService;
 import io.privalou.security.JwtAuthenticationEntryPoint;
 import io.privalou.security.JwtAuthenticationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,6 +28,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
     private final CustomUserDetailsService customUserDetailsService;
 
     private final JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -83,14 +85,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/**")
-                .permitAll()
                 .antMatchers("/api/auth/**")
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/api/**")
                 .permitAll()
                 .anyRequest()
-                .permitAll();
+                .authenticated();
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

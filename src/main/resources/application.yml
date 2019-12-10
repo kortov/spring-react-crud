@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: dev
   datasource:
     url: jdbc:postgresql://localhost:5432/hollywood?createDatabaseIfNotExist=true
     username: postgres
@@ -12,13 +10,10 @@ spring:
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-logging:
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-  level:
-    org.springframework: ERROR
-    org.hibernate: ERROR
-
+  security:
+    user:
+      name: admin
+      password: admin
 jwt:
   secret: JWTSuperSecretKey
   expirationInMs: 604800000
